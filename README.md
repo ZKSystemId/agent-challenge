@@ -7,9 +7,9 @@
 
 ZigsAI Ultra Agent is an enterprise-grade **AI Research Platform** that aggregates data from **160+ real-time sources** and uses **Groq LLaMA 3.3 70B** for intelligent analysis. This agent features context-aware responses, GitHub repository analysis, cryptocurrency market data, and multi-language support (EN/ID).
 
-### ⚡ Live Demo: [Deployed on Nosana Network]([https://your-nosana-deployment-url.node.k8s.prd.nos.ci](https://61c4yrbxjgv3lft72ojjsku7gonaqdpe2wkbxsrjmcf3.node.k8s.prd.nos.ci/))
+### ⚡ Live Demo: [Deployed on Nosana Network](https://61c4yrbxjgv3lft72ojjsku7gonaqdpe2wkbxsrjmcf3.node.k8s.prd.nos.ci/)
 ### 📦 Docker Image: `docker.io/zigsai/zigsai-ultra-agent:v4`
-### 🎥 Video Demo: [[GDrive](https://youtube.com/your-demo](https://drive.google.com/drive/folders/1IeTk9BV7CijlcEo5zbgsZRk8t1QHdJRU))
+### 🎥 Video Demo: [GDrive](https://drive.google.com/drive/folders/1IeTk9BV7CijlcEo5zbgsZRk8t1QHdJRU)
 
 ## 🧠 Core Technology Stack
 
