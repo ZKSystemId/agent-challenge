@@ -1,5 +1,6 @@
 # 🚀 ZigsAI Ultra Agent v4 - Advanced Multi-Source Intelligence Platform
 **Winner-Ready Submission for Nosana Builders Challenge #102**
+![nosana ss](https://github.com/user-attachments/assets/ee82f5e7-e906-4dcf-bad0-d24569db3346)
 
 ![Agent](./assets/NosanaBuildersChallenge03.jpg)
 
