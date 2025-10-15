@@ -1,0 +1,29 @@
+{
+  "version": "0.1",
+  "type": "container",
+  "meta": {
+    "trigger": "cli"
+  },
+  "ops": [
+    {
+      "type": "container/run",
+      "id": "zigsai-ultra-v4",
+      "args": {
+        "cmd": [
+          "sh",
+          "-c",
+          "echo '🚀 Starting ZigsAI Ultra Agent v4...' && echo 'Port: 3000' && echo 'Environment: Production' && npm run start:ui 2>&1 | tee /tmp/app.log & sleep 10 && echo '✅ Server started!' && tail -f /tmp/app.log"
+        ],
+        "image": "docker.io/zigsai/zigsai-ultra-agent:v4",
+        "gpu": true,
+        "expose": 3000,
+        "env": {
+          "NODE_ENV": "production",
+          "PORT": "3000",
+          "HOSTNAME": "0.0.0.0",
+          "DEMO_MODE": "true"
+        }
+      }
+    }
+  ]
+}

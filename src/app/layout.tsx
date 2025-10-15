@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { CopilotKit } from "@copilotkit/react-core";
 import "./globals.css";
+import { CopilotKit } from "@copilotkit/react-core";
 import "@copilotkit/react-ui/styles.css";
 
 const geistSans = Geist({
@@ -15,22 +15,38 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nosana Mastra Agent Kit",
-  description: "An example of using CopilotKit with Mastra agents.",
+  title: "ZigsAI Agent Studio",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
+  // Suppress React DevTools warnings in production
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+    const originalError = console.error;
+    console.error = (...args) => {
+      if (
+        args[0]?.includes?.('React DevTools') || 
+        args[0]?.includes?.('WebSocket') ||
+        args[0]?.includes?.('Failed to load resource')
+      ) {
+        return;
+      }
+      originalError.apply(console, args);
+    };
+  }
+  
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <CopilotKit runtimeUrl="/api/copilotkit" agent="weatherAgent">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <CopilotKit runtimeUrl="/api/copilotkit">
           {children}
         </CopilotKit>
       </body>
     </html>
-  );
+  )
 }

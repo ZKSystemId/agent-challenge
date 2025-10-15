@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  zigsai-ultra-agent:
+    build: .
+    container_name: zigsai-ultra-studio
+    image: zigsai/ultra-agent:latest
+    environment:
+      - NODE_ENV=production
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROK_API_KEY=${GROQ_API_KEY}  # Fallback name
+      - OLLAMA_API_URL=${OLLAMA_API_URL:-http://host.docker.internal:11434/v1}
+      - NOS_OLLAMA_API_URL=${NOS_OLLAMA_API_URL:-http://host.docker.internal:11434/v1}
+      - MODEL_NAME_AT_ENDPOINT=${MODEL_NAME_AT_ENDPOINT:-qwen3:8b}
+      - NOS_MODEL_NAME_AT_ENDPOINT=${NOS_MODEL_NAME_AT_ENDPOINT:-qwen3:8b}
+      - LOG_LEVEL=info
+      - MASTRA_TELEMETRY_DISABLED=true
+    ports:
+      - "3000:3000"  # UI Frontend
+      - "4111:4111"  # Agent Backend
+    restart: unless-stopped
+    networks:
+      - nosana-network
+
+networks:
+  nosana-network:
+    driver: bridge

@@ -1,0 +1,74 @@
+version: "1.0"
+name: "ZigsAI ULTRA Agent Studio"
+description: "Advanced AI Research Assistant with 6 Mastra Tools and IQ 250+ Intelligence"
+author: "ZigsAI Team"
+category: "AI Agent"
+
+# Resource requirements
+resource:
+  cpu: 2
+  memory: 4Gi
+  gpu: false
+  storage: 10Gi
+
+# Docker configuration
+docker:
+  image: "zigsai/zigsai-ultra-agent:latest"  # Update with your Docker Hub username
+  ports:
+    - 3000:3000  # UI Port
+    - 4111:4111  # Agent Port
+# Environment variables
+env:
+  - name: NODE_ENV
+    value: "production"
+  - name: GROQ_API_KEY
+    value: "${GROQ_API_KEY}"  # Will be set as secret during deployment
+  - name: NEXT_PUBLIC_API_URL
+    value: "http://localhost:4111"
+  - name: LOG_LEVEL
+    value: "info"
+  - name: MASTRA_TELEMETRY_DISABLED
+
+# Health checks
+healthcheck:
+  endpoint: "/api/health"
+  port: 3000
+  interval: 30
+  timeout: 10
+  retries: 3
+
+# Scaling configuration
+scaling:
+  min: 1
+  max: 3
+  targetCPU: 80
+
+# Network configuration
+network:
+  type: "public"
+  domains:
+    - "zigsai-ultra.nosana.io"  # Will be assigned by Nosana
+
+# Metadata for Nosana marketplace
+metadata:
+  tags:
+    - "ai"
+    - "agent"
+    - "mastra"
+    - "research"
+    - "crypto"
+    - "currency"
+  features:
+    - "Real-time cryptocurrency prices"
+    - "Currency conversion with bank rates"
+    - "GitHub repository analysis"
+    - "Market sentiment analysis"
+    - "Weather information"
+    - "ULTRA intelligence with IQ 250+"
+  tools:
+    - "cryptoPriceTool"
+    - "currencyConvertTool"
+    - "githubAnalysisTool"
+    - "sentimentAnalysisTool"
+    - "predictionAnalysisTool"
+    - "weatherTool"

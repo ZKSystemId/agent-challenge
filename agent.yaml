@@ -1,0 +1,66 @@
+# Nosana Agent Deployment Configuration
+# For Nosana Challenge #102
+
+# Agent metadata
+name: web-researcher-agent
+version: 1.0.0
+description: "AI-powered Web Researcher Agent that aggregates information from multiple sources"
+author: "Nosana Challenge Participant"
+
+# Docker configuration
+docker:
+  image: "nosana/web-researcher-agent:latest"
+  registry: "docker.io"
+  
+# Resource requirements
+resources:
+  cpu: 2
+  memory: 4Gi
+  storage: 10Gi
+  
+      
+  container:
+    image: nosana/web-research-agent:latest
+    registry:
+      username: ${DOCKER_USERNAME}
+      password: ${DOCKER_PASSWORD}
+  # GPU requirements (if needed for AI models)
+  gpu:
+    enabled: false
+    type: "nvidia"
+    count: 0
+    
+  # Deployment strategy
+  deployment:
+    type: "rolling"
+    replicas: 1
+    
+  # Node selection
+  node:
+    tier: "standard"
+    region: "us-west"
+    
+  # Monitoring
+  monitoring:
+    enabled: true
+    metrics:
+      - cpu_usage
+      - memory_usage
+      - request_count
+      - response_time
+      
+# Endpoints exposed to Nosana network
+endpoints:
+  - name: "Web UI"
+    url: "https://{{NODE_URL}}:3000"
+    description: "Main user interface for the Web Researcher Agent"
+    
+  - name: "Agent API"
+    url: "https://{{NODE_URL}}:4111"
+    description: "Backend API for agent operations"
+    
+# Commands
+commands:
+  start: "npm start"
+  stop: "npm stop"
+  health: "curl -f http://localhost:3000 || exit 1"
